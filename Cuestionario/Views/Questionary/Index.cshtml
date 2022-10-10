@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Listado de Preguntas";
+}
+
+@model Cuestionario.ViewModels.QuestionListViewModel
+
+@{ uint index = 0; }
+ 
+<div class="text-left">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-primary" asp-action="Create">Añadir</a>
+    </div>
+
+    <div className="container bg-light">
+
+            <table class="table">
+                <thead>        
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                        @foreach (var question in Model.Questions)
+                        {
+                                index++;
+                            <tr>
+                                <td>@index</td>
+                                <td>@question.Title</td>
+                                <td>
+                                    <a class="" asp-action="Edit" asp-route-id="@question.Id">Editar</a>
+                                    <a class="text-danger" asp-action="Delete" asp-route-id="@question.Id">Borrar</a>
+                                </td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        <br />
+    </div>
+</div>
